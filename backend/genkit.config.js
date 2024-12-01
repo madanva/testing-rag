@@ -1,14 +1,13 @@
 // genkit.config.js
-import { genkit } from 'genkit';
-import { googleAI, gemini15Pro, textEmbeddingGecko } from '@genkit-ai/googleai';
-import dotenv from 'dotenv';
 
+import dotenv from 'dotenv';
 dotenv.config();
 
+import { genkit } from 'genkit';
+import { googleAI, gemini15Pro } from '@genkit-ai/googleai'; // Removed textEmbedding004
+
 const ai = genkit({
-  plugins: [
-    googleAI(),
-  ],
+  plugins: [googleAI()],
   model: gemini15Pro, // Set default model
 });
 

@@ -1,4 +1,4 @@
-// src/App.js
+// frontend/src/App.js
 import React, { useState } from 'react';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/query', {
+      const res = await fetch('http://localhost:5001/query', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query }),
@@ -18,8 +18,8 @@ function App() {
       const data = await res.json();
       setResponse(data.response);
     } catch (error) {
-      console.error('Error fetching data:', error);
-      setResponse('An error occurred while fetching data.');
+      console.error('Error fetching response:', error);
+      setResponse('An error occurred while fetching the response.');
     } finally {
       setLoading(false);
     }

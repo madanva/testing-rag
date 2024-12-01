@@ -11,7 +11,8 @@ app.use(express.json());
 // Run the indexer flow at startup
 (async () => {
   try {
-    await ai.runFlow(csvIndexerFlow);
+    await csvIndexerFlow(); // Call the flow directly
+    console.log('Documents indexed successfully.');
   } catch (error) {
     console.error('Error indexing documents:', error);
   }
@@ -20,7 +21,7 @@ app.use(express.json());
 app.post('/query', async (req, res) => {
   const userQuery = req.body.query;
   try {
-    const response = await ai.runFlow(csvQAFlow, userQuery);
+    const response = await csvQAFlow(userQuery); // Call the flow directly with input
     res.json({ response });
   } catch (error) {
     console.error('Error handling query:', error);
@@ -28,7 +29,7 @@ app.post('/query', async (req, res) => {
   }
 });
 
-const PORT = 5000;
+const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
